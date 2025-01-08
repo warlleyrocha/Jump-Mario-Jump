@@ -1,6 +1,15 @@
 const mario = document.querySelector(".mario");
 const pipe = document.querySelector(".pipe");
 const restartScreen = document.querySelector(".restart-screen");
+const scoreElement = document.getElementById("score");
+
+let score = 0;
+let hasPassedPipe = false;
+
+const updateScore = () => {
+  score++;
+  scoreElement.textContent = score;
+};
 
 const jump = () => {
   mario.classList.add("jump");
@@ -31,6 +40,11 @@ const loop = setInterval(() => {
 
     clearInterval(loop);
     restartScreen.style.display = "flex";
+  } else if (pipePosition < 0 && !hasPassedPipe) {
+    updateScore();
+    hasPassedPipe = true;
+  } else if (pipePosition >= 120) {
+    hasPassedPipe = false;
   }
 }, 10);
 
@@ -43,6 +57,9 @@ function restartGame() {
   mario.src = "/assets/images/mario.gif";
   mario.style.width = "150px";
   mario.style.marginLeft = "0px";
+
+  score = 0;
+  scoreElement.textContent = score;
 
   setTimeout(() => {
     location.reload();
