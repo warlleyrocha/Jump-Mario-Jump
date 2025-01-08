@@ -76,6 +76,28 @@ body {
   cursor: pointer;
 }
 
+.score-board {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: "Press Start 2P", serif;
+  font-style: normal;
+  font-weight: 700;
+  color: white;
+  text-shadow: 5px 5px 5px #000;
+}
+
+.score-board h1 {
+  margin-right: 250px;
+  margin-bottom: 25px;
+  font-size: 32px;
+}
+
+.score-board span {
+  margin-left: 330px;
+  font-size: 32px;
+}
+
 @keyframes pipe-animation {
   from {
     right: -80px;
