@@ -2,6 +2,8 @@ const mario = document.querySelector(".mario");
 const pipe = document.querySelector(".pipe");
 const restartScreen = document.querySelector(".restart-screen");
 const scoreElement = document.getElementById("score");
+const musicGame = document.getElementById("musicGame"); // Seleciona o áudio do jogo
+const gameOverMusic = document.getElementById("gameOverMusic");
 
 let score = 0;
 let hasPassedPipe = false;
@@ -39,6 +41,11 @@ const loop = setInterval(() => {
     mario.style.marginLeft = "50px";
 
     clearInterval(loop);
+
+    musicGame.pause(); // Pausa a música ao colidir com o cano
+    musicGame.currentTime = 0; // Reseta a música para o início
+    gameOverMusic.play(); // Inicia a musica de game over
+
     restartScreen.style.display = "flex";
   } else if (pipePosition < 0 && !hasPassedPipe) {
     updateScore();
@@ -60,6 +67,8 @@ function restartGame() {
 
   score = 0;
   scoreElement.textContent = score;
+
+  musicGame.play(); // Retoma a música ao reiniciar o jogo
 
   setTimeout(() => {
     location.reload();
